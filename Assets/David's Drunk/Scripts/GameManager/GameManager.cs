@@ -9,6 +9,11 @@ public class GameManager : MonoBehaviour
     
     private void Awake()
     {
+        InstantiatePlayer();
+    }
+
+    private void InstantiatePlayer()
+    {
         actualCharacter = Instantiate(charactersList, charactersList.transform.position, charactersList.transform.rotation);
     }
 }

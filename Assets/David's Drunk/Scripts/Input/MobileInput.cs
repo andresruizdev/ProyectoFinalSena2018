@@ -6,11 +6,13 @@ public class MobileInput : MonoBehaviour
 {
     private const float DEADZONE = 100.0f;
 
-    public static MobileInput Instance { set; get; }
+    
 
     private bool tap, swipeLeft, swipeRight, swipeUp, swipeDown;
     private Vector2 swipeDelta, startTouch;
 
+    //Definiendo  propiedades
+    public static MobileInput Instance { set; get; }
     public bool Tap { get { return tap; } }
     public Vector2 SwipeDelta { get { return swipeDelta; } }
     public bool SwipeLeft { get { return swipeLeft; } }
@@ -25,11 +27,12 @@ public class MobileInput : MonoBehaviour
 
     private void Update()
     {
-        //Reseting all the booleans
+        //Reseteando todo los booleanos
         tap = swipeLeft = swipeRight = swipeDown = swipeUp = false;
 
-        // Let's check for inputs!
+        // Verificar Entradas o Toques
 
+        // Si está en Windows
         #region Standalone Inputs
         if (Input.GetMouseButtonDown(0))
         {
@@ -42,6 +45,7 @@ public class MobileInput : MonoBehaviour
         }
         #endregion
 
+        //Si está en un Móvil
         #region Mobile Inputs
         if (Input.touches.Length != 0)
         {
@@ -59,7 +63,7 @@ public class MobileInput : MonoBehaviour
 
         #endregion
 
-        // Calculate Distance
+        // Calcular Distancia del Swipe
         swipeDelta = Vector2.zero;
         if (startTouch != Vector2.zero)
         {
@@ -75,16 +79,16 @@ public class MobileInput : MonoBehaviour
             }
         }
 
-        // Let's check if we're beyond the deadzone
+        // Comprobando si sbre pasa la zona de muerte
         if (swipeDelta.magnitude > DEADZONE)
         {
-            // This is a confirmed swipe
+            // Swipe confirmado
             float x = swipeDelta.x;
             float y = swipeDelta.y;
 
             if (Mathf.Abs(x) > Mathf.Abs(y))
             {
-                //Left or Right
+                //Para Detectar dirección arriba o abajo
                 if (x < 0)
                 {
                     swipeLeft = true;
@@ -96,7 +100,7 @@ public class MobileInput : MonoBehaviour
             }
             else
             {
-                //Up or Down
+                //Para Detectar dirección arriba o abajo
                 if (y < 0)
                 {
                     swipeDown = true;
