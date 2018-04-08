@@ -17,6 +17,7 @@ public class CameraMechanics : MonoBehaviour
         offset = transform.position - player.position;
     }
 
+    //Hace que la cámara siga al personaje
     private void LateUpdate()
     {
         finalPlayerPos.y = player.position.y;
