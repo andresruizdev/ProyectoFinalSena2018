@@ -22,6 +22,7 @@ public class PlayerControls : MonoBehaviour
         Movement();
     }
 
+    // Este método se encarga del movimiento de acuerdo al movimiento que detecta el MobileInput
     private void Movement()
     {
         if (MobileInput.Instance.SwipeLeft)
@@ -34,18 +35,16 @@ public class PlayerControls : MonoBehaviour
         }
         if (MobileInput.Instance.SwipeUp)
         {
-            beforeJump = transform.position.x;
             anim.SetTrigger("Jump");
-            StartCoroutine(AfterJump());
         }
         if (MobileInput.Instance.SwipeDown)
         {
-            beforeSlide = transform.position.x;
             anim.SetTrigger("Slide");
-            StartCoroutine(AfterSlide());
         }
     }
 
+
+    //Corrutina de movimiento
     private IEnumerator MovementCoroutine(float moveQuantity)
     {
         for (int i = 0; i < 10; i++)
@@ -54,27 +53,5 @@ public class PlayerControls : MonoBehaviour
             yield return new WaitForSeconds(0.02f);
         }
     }
-
-    private IEnumerator AfterSlide()
-    {
-        yield return new WaitForSeconds(1.5f);
-        slidePositionsOperation = ( transform.position.x - beforeSlide ) / 8;
-        print(slidePositionsOperation);
-        for (int i = 0; i < 7; i++)
-        {
-            transform.position -= new Vector3(slidePositionsOperation, 0, 0);
-            yield return new WaitForSeconds(0.05f);
-        }
-    }
-
-    private IEnumerator AfterJump()
-    {
-        yield return new WaitForSeconds(1.5f);
-        jumpPositionsOperation = ( transform.position.x - beforeJump ) / 8;
-        for (int i = 0; i < 7; i++)
-        {
-            transform.position -= new Vector3(jumpPositionsOperation, 0, 0);
-            yield return new WaitForSeconds(0.05f);
-        }
-    }
+    
 }

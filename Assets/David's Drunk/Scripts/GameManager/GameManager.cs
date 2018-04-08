@@ -6,8 +6,16 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject charactersList;
     public static GameObject actualCharacter;
-    
+    public static int firstCity;
+
     private void Awake()
+    {
+        firstCity = 0;
+        InstantiatePlayer();
+    }
+
+    //Metodo que instancia al personaje
+    private void InstantiatePlayer()
     {
         actualCharacter = Instantiate(charactersList, charactersList.transform.position, charactersList.transform.rotation);
     }
