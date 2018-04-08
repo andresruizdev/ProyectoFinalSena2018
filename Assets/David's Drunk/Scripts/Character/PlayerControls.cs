@@ -22,6 +22,7 @@ public class PlayerControls : MonoBehaviour
         Movement();
     }
 
+    // Este método se encarga del movimiento de acuerdo al movimiento que detecta el MobileInput
     private void Movement()
     {
         if (MobileInput.Instance.SwipeLeft)
@@ -42,6 +43,8 @@ public class PlayerControls : MonoBehaviour
         }
     }
 
+
+    //Corrutina de movimiento
     private IEnumerator MovementCoroutine(float moveQuantity)
     {
         for (int i = 0; i < 10; i++)

@@ -11,16 +11,29 @@ public class InstanciarCiudad : MonoBehaviour {
         //Se invocan los metodos InstantiateCity despues de unos segundos segun el caso y posteriormente tambien a DeleteThisOne, sirven para instanciar y destruir sucesivamente
         if (GameManager.firstCity == 0)
         {
-            Invoke("InstantiateCity", 8f);
+            StartCoroutine(InstantiateCityCoroutine(6f));
             GameManager.firstCity++;
         }
         else if (GameManager.firstCity == 1)
         {
-            Invoke("InstantiateCity", 10f);
+            StartCoroutine(InstantiateCityCoroutine(25f));
         }
-        Invoke("DeleteThisOne", 20f);
+        //StartCoroutine(DeleteStreet(50f));
 
     }
+
+
+    IEnumerator InstantiateCityCoroutine(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        InstantiateCity();
+    }
+
+    /*IEnumerator DeleteStreet(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        DeleteThisOne();
+    }*/
 
     void InstantiateCity()
     {
@@ -28,10 +41,10 @@ public class InstanciarCiudad : MonoBehaviour {
         Instantiate(city, transform.position + new Vector3(0,0,100), transform.rotation);
     }
 
-    void DeleteThisOne()
+    /*void DeleteThisOne()
     {
         //Elimina esta cuando se activa el metodo
         Destroy(this.transform.gameObject);
-    }
+    }*/
 	
 }
