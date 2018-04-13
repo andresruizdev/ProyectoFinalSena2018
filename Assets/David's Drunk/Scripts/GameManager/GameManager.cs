@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +18,23 @@ public class GameManager : MonoBehaviour
     //Metodo que instancia al personaje
     private void InstantiatePlayer()
     {
-        actualCharacter = Instantiate(charactersList, charactersList.transform.position, charactersList.transform.rotation);
+        try
+        {
+            if (charactersList != null)
+            {
+                actualCharacter = Instantiate(charactersList, charactersList.transform.position, charactersList.transform.rotation);
+                actualCharacter.name = "David";
+            }
+            
+        }
+        catch (System.Exception ex)
+        {
+            print(ex);
+        }
+    }
+
+    public void ReStart()
+    {
+        SceneManager.LoadScene(1);
     }
 }
