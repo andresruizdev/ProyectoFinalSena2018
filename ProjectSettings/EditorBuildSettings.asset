@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/David's Drunk/Scenes/Main Menu.unity
+    guid: dad6aea8dc6c9e348a2d7c13c12a4e4b
+  - enabled: 1
+    path: Assets/David's Drunk/Scenes/David's Drunk.unity
+    guid: 1be3a317a1763bf42a9f5f3dd02ee31b

@@ -11,10 +11,13 @@ public class PlayerControls : MonoBehaviour
     private float slidePositionsOperation;
     private float beforeJump;
     private float jumpPositionsOperation;
+    public GameObject menu;
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        menu = GameObject.Find("Canvas");
+        menu.SetActive(false);
     }
 
     private void Update()
@@ -26,8 +29,9 @@ public class PlayerControls : MonoBehaviour
     {
         if (other.tag == "Obstacle")
         {
-            print("GameOver");
+            menu.SetActive(true);
         }
+        
     }
 
     // Este método se encarga del movimiento de acuerdo al movimiento que detecta el MobileInput
