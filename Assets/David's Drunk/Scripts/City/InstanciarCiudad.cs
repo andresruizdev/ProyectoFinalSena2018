@@ -5,9 +5,15 @@ using UnityEngine;
 public class InstanciarCiudad : MonoBehaviour {
     [SerializeField]
     GameObject city;
-
-	void Start ()
+    [SerializeField]
+    GameObject player;
+    [SerializeField]
+    GameObject[] obstacles;
+    Transform obstacleTransform;
+    
+    void Start ()
     {
+        player = GameObject.Find("David");
         //Se invocan los metodos InstantiateCity despues de unos segundos segun el caso y posteriormente tambien a DeleteThisOne, sirven para instanciar y destruir sucesivamente
         if (GameManager.firstCity == 0)
         {
@@ -19,6 +25,7 @@ public class InstanciarCiudad : MonoBehaviour {
             StartCoroutine(InstantiateCityCoroutine(25f));
         }
         //StartCoroutine(DeleteStreet(50f));
+        StartCoroutine(InstantiateObstacles());
 
     }
 
@@ -28,23 +35,52 @@ public class InstanciarCiudad : MonoBehaviour {
         yield return new WaitForSeconds(seconds);
         InstantiateCity();
     }
-
-    /*IEnumerator DeleteStreet(float seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-        DeleteThisOne();
-    }*/
+    
 
     void InstantiateCity()
     {
-        //Instanca el prefab de la ciodad en la posicion y rotacion dada en los parametros
-        Instantiate(city, transform.position + new Vector3(0,0,100), transform.rotation);
+        try
+        {
+            if (city != null)
+            {
+                Instantiate(city, transform.position + new Vector3(0, 0, 100), Quaternion.identity);
+            }
+            else
+            {
+                return;
+            }
+        }
+        catch (System.Exception ex)
+        {
+            print(ex);
+        }
+        
     }
 
-    /*void DeleteThisOne()
+    IEnumerator InstantiateObstacles()
     {
-        //Elimina esta cuando se activa el metodo
-        Destroy(this.transform.gameObject);
-    }*/
+        int obstacleIndex = Random.Range(0,2);
+        int counter = 0;
+        float secondsRange = Random.Range(6f, 13f);
+        float pos = Random.Range(-1.4f, 1.5f);
+
+        try
+        {
+            if (obstacles[obstacleIndex] != null && counter < 8)
+            {
+                GameObject obstacle = Instantiate(obstacles[obstacleIndex], player.transform.position + new Vector3(pos, 0, 40), Quaternion.identity);
+                obstacle.transform.SetParent(this.gameObject.transform);
+                counter++;
+            }
+        }
+        catch (System.Exception ex)
+        {
+            print(ex);
+        }
+        yield return new WaitForSeconds(secondsRange);
+        StartCoroutine(InstantiateObstacles());
+    }
+    
+    
 	
 }
