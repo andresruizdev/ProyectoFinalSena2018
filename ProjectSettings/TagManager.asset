@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - CameraTracker
+  - Obstacle
   layers:
   - Default
   - TransparentFX

@@ -17,6 +17,18 @@ public class GameManager : MonoBehaviour
     //Metodo que instancia al personaje
     private void InstantiatePlayer()
     {
-        actualCharacter = Instantiate(charactersList, charactersList.transform.position, charactersList.transform.rotation);
+        try
+        {
+            if (charactersList != null)
+            {
+                actualCharacter = Instantiate(charactersList, charactersList.transform.position, charactersList.transform.rotation);
+                actualCharacter.name = "David";
+            }
+            
+        }
+        catch (System.Exception ex)
+        {
+            print(ex);
+        }
     }
 }

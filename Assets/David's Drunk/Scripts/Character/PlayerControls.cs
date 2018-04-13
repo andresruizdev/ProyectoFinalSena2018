@@ -22,6 +22,14 @@ public class PlayerControls : MonoBehaviour
         Movement();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Obstacle")
+        {
+            print("GameOver");
+        }
+    }
+
     // Este método se encarga del movimiento de acuerdo al movimiento que detecta el MobileInput
     private void Movement()
     {
