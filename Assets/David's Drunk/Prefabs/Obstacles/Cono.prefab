@@ -21,9 +21,10 @@ GameObject:
   - component: {fileID: 4317567565927950}
   - component: {fileID: 33811775122332218}
   - component: {fileID: 23199594407273824}
+  - component: {fileID: 64017346337130258}
   m_Layer: 0
   m_Name: Cono
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,4 +82,18 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1455642510950872}
+  m_Mesh: {fileID: 4300002, guid: 669a09db6e354be4f88d5012514c8914, type: 3}
+--- !u!64 &64017346337130258
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1455642510950872}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 669a09db6e354be4f88d5012514c8914, type: 3}

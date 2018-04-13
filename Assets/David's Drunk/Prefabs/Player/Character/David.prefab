@@ -368,6 +368,7 @@ GameObject:
   - component: {fileID: 114089784282689140}
   - component: {fileID: 114066194004721014}
   - component: {fileID: 136837866891973362}
+  - component: {fileID: 54565402109221096}
   m_Layer: 0
   m_Name: David
   m_TagString: Player
@@ -800,6 +801,21 @@ Transform:
   m_Father: {fileID: 4907739383065106}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &54565402109221096
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1890717124847910}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!95 &95194348208942232
 Animator:
   serializedVersion: 3
