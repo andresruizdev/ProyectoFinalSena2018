@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerControls : MonoBehaviour
 {
@@ -12,12 +13,28 @@ public class PlayerControls : MonoBehaviour
     private float beforeJump;
     private float jumpPositionsOperation;
     public GameObject menu;
+    public AudioSource playerAS;
+    private bool menuIsActive = false;
+    public Text pointCounter;
+    public Text pointSetterFinish;
+    public GameObject credits;
 
     private void Awake()
     {
-        anim = GetComponent<Animator>();
+        pointCounter = GameObject.Find("Points").GetComponent<Text>();
+        pointSetterFinish = GameObject.Find("PointsC").GetComponent<Text>();
         menu = GameObject.Find("Canvas");
+        credits = GameObject.Find("Creditos");
+        anim = GetComponent<Animator>();
+        
+    }
+
+    private void Start()
+    {
+        playerAS = this.GetComponent<AudioSource>();
+        CloseCredits();
         menu.SetActive(false);
+        
     }
 
     private void Update()
@@ -29,9 +46,31 @@ public class PlayerControls : MonoBehaviour
     {
         if (other.tag == "Obstacle")
         {
-            menu.SetActive(true);
+            Finish();
+            
         }
         
+    }
+
+    public void Finish()
+    {
+        if (!menuIsActive)
+        {
+            playerAS.Play();
+            pointSetterFinish.text = pointCounter.text;
+        }
+        menu.SetActive(true);
+        menuIsActive = true;
+    }
+
+    public void OpenCredits()
+    {
+        credits.SetActive(true);
+    }
+
+    public void CloseCredits()
+    {
+        credits.SetActive(false);
     }
 
     // Este método se encarga del movimiento de acuerdo al movimiento que detecta el MobileInput
